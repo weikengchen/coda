@@ -5,7 +5,7 @@
 /scripts/ @nholland94 @yourbuddyconner @emberian @bkase @psteckler
 /Makefile @nholland94 @bkase @yourbuddyconner
 /src/config/dev.mlh @nholland94 @emberian @bkase
-/src/config/testnet_postake_medium_curves.mlh @nholland94 @bkase @emberian
+/src/config/testnet.mlh @nholland94 @bkase @emberian
 /CODE_OF_CONDUCT.md @imeckler @emberian
 /CONTRIBUTING.md @imeckler @emberian
 /LICENSE @imeckler
