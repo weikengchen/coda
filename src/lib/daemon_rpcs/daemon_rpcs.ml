@@ -7,16 +7,7 @@ module Client = Client
 
 module Get_transaction_status = struct
   module Query = struct
-    [%%versioned
-    module Stable = struct
-      module V1 = struct
-        type t = User_command.Stable.V1.t
-
-        let to_latest = Fn.id
-      end
-    end]
-
-    type t = Stable.Latest.t
+    type t = User_command.t [@@deriving bin_io_unversioned]
   end
 
   module Response = struct
@@ -35,8 +26,7 @@ module Get_transaction_status = struct
 
   let rpc : (Query.t, Response.t) Rpc.Rpc.t =
     Rpc.Rpc.create ~name:"Get_transaction_status" ~version:0
-      ~bin_query:Query.Stable.Latest.bin_t
-      ~bin_response:Response.Stable.Latest.bin_t
+      ~bin_query:Query.bin_t ~bin_response:Response.Stable.Latest.bin_t
 end
 
 module Send_user_commands = struct
@@ -836,7 +826,7 @@ module Get_trustlist = struct
 end
 
 (** daemon-level Get_telemetry_data; implementation invokes
-    Coda_networking's Get_telemetry_data for each provided peer 
+    Coda_networking's Get_telemetry_data for each provided peer
  *)
 module Get_telemetry_data = struct
   module Query = struct
