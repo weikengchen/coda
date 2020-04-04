@@ -7,7 +7,7 @@ module Client = Client
 
 module Get_transaction_status = struct
   module Query = struct
-    type t = User_command.t [@@deriving bin_io_unversioned]
+    type t = User_command.Stable.V1.t [@@deriving bin_io_unversioned]
   end
 
   module Response = struct
@@ -26,7 +26,8 @@ module Get_transaction_status = struct
 
   let rpc : (Query.t, Response.t) Rpc.Rpc.t =
     Rpc.Rpc.create ~name:"Get_transaction_status" ~version:0
-      ~bin_query:Query.bin_t ~bin_response:Response.Stable.Latest.bin_t
+      ~bin_query:Query.Stable.Latest.bin_t
+      ~bin_response:Response.Stable.Latest.bin_t
 end
 
 module Send_user_commands = struct
